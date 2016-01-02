@@ -1,0 +1,74 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<title>LevelOne</title>
+	<link rel="stylesheet" type="text/css" href="./styles.css">
+	<script type="text/javascript" src="../dependencies/angular.js"></script>
+	<script type="text/javascript" src="../engine/proofEngine.js"></script>
+	<script type="text/javascript" src="../engine/setEngine.js"></script>
+	<script type="text/javascript" src="../engine/operations.js"></script>
+	<script type="text/javascript" src="./app2.js"></script>
+</head>
+
+<body ng-app="homepage">
+	<div id="wrapper" ng-controller="proofController as pC">
+		<button id="assertSwitch" onclick="assert()"> ASSERT MODE</button>
+		<button id="navigateSwitch" onclick="navigate()">NAVIGATE MODE</button>
+		<button ng-click="pC.miniMapAdd()">MiniMapDynamo</button>
+
+			<div id="playgroundWrapper" class="playgroundInFocus">
+				<div ng-repeat="set in pC.oldSets track by set.groupIndex">
+					<div class="currentSet set0" ng-show='$first'>
+						{{set.equivalents[0]}}
+						<div id="set1" class="nextRoom">Take me to: {{pC.oldSets[$index+1].equivalents[0]}}</div>
+						<div id="set2" class="nextRoom">Take me to: {{pC.oldSets[$index+2].equivalents[0]}}</div>
+						<div id="character" class="">This is YOU!!</div>
+					</div>
+				</div>
+			</div>
+
+
+		<div id="toolBoxWrapper" class="toolBoxWrapperSmall">
+			<div id="toolBox" class="">
+				ToolBox
+				This is where the operations will go
+				when an operation is clicked we go into assert mode   - click on the button to the right
+			</div>		
+		</div>
+		
+		<div id="miniMap" class="miniMapSmall">
+				<div>Working on a dynamic that I am working on that takes as inputs the group name and generates the appropriate table structure for minimap</div>
+			<table>
+				<tr>
+				  <td rowspan="4">AU(BUC)</td>
+				</tr>
+				<tr>
+				  <td colspan='2'>A</td>
+				
+				  <td rowspan="2">AUB</td>
+				  <td rowspan="4">(AUB)UC</td>
+
+				</tr>
+				<tr>
+				  <td rowspan="2">BUC</td>
+				  <td>B</td>
+
+				</tr>
+				<tr>
+				  <td colspan='2'>C</td>
+				 
+				</tr>
+			</table>
+		<!-- 	<table>
+				<tr>
+					<td rowspan="3">Head</td>
+				</tr>
+				<tr>
+					<td id="{{pC.oldSets[2].equivalents[0]}}">{{pC.oldSets[2].equivalents[0]}}</td>
+				</tr>
+			</table> -->
+		</div>
+	</div>
+</body>
+
+</html>

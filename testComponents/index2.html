@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Front End</title>
+	<script type="text/javascript" src="../dependencies/angular.js"></script>
+	<script type="text/javascript" src="../engine/proofEngine.js"></script>
+	<script type="text/javascript" src="../engine/setEngine.js"></script>
+	<script type="text/javascript" src="../engine/operations.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body ng-app="homepage">
+	<h1>The Tester Front End</h1>
+		<span>
+			This is a test of the angular links
+			2+2 = {{2+2}}
+
+		</span>
+
+	<div id="wrapper" ng-controller="proofController as pC">
+	<span>
+		This is to test the app.controller instantiation
+		groupName: {{pC.groupname}}
+	</span>
+		<div id="old">
+			<h2>Existing SETS</h2>
+			<div id="{{set.equivalents[0]}}" ng-repeat="set in pC.oldSets track by $index" class="oldSets sets {{$index}}" draggable="true" ondragstart="drag(event)" ng-click="$parent.selected = $index">{{set.equivalents[0]}}</div>
+		</div>	
+		<div id="elem">
+			<h2>Elements</h2>
+			<div id="{{element.name}}" ng-repeat="element in pC.elements track by $index" class="elements elements {{$index}}" draggable="true" ondragstart="drag(event)" ng-click="$parent.selected = $index" >{{element.name}}</div>
+		</div>
+		<div id="new">
+			<h2>Created SETS</h2>
+			<div id="{{set.eqivalents[0]}}" ng-repeat="set in pC.newSets track by $index" class="newSets sets {{$index}}" draggable="true" ondragstart="drag(event)" ng-click="$parent.selected = $index">{{set.equivalents[0]}}</div>
+		</div>
+		<div id="bar">
+			<div id="dropspot1" class="emptyslot" ondragover="dragover(event)" ondrop="angular.element(getElementById('dropspot1')).scope().pC.drop(event)">
+				<div ng-repeat="set in pC.selectedSets track by $index" class="sets selectedSets" id="{{set.equivalents[0]}}">{{set.equivalents[0]}}{{set.name}}</div>
+			</div>
+			<button id="putinbutton" onclick="angular.element(getElementById('putinbutton')).scope().pC.putIncall()">putIn</button>
+			<button id= "unionButton" onclick="angular.element(getElementById('unionButton')).scope().pC.unioncall()">Union</button>
+			<button>tester</button>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Front End</title>
+	<!-- // <script type="text/javascript" src="../../angular.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="../../style.css">
+	<script type="text/javascript" src="drag.js"></script>
+	<!-- // <script type="text/javascript" src="./bundle.js"></script> -->
+</head>
+<body >
+	<h1>Drag and drop vanilla</h1>
+	<div id="wrapper">
+
+		<div id="old">
+			<h2>Existing SETS</h2>
+			<div id="set1" draggable='true' ondragstart='drag(event)' class="sets">item1</div>
+		</div>	
+		<div id="elem">
+			<h2>Elements</h2>
+			<div ID="elem1" draggable='true' ondragstart='drag(event)' class="elements" >item2</div>
+		</div>
+		<div id="new">
+			<h2>Created SETS</h2>
+			<div id="createdset1" draggable='true' ondragstart='drag(event)' class="sets"></div>
+		</div>
+		<div id="bar">
+			<!-- <div id="slot1" class="emptyslot" ng-repeat="set in pC.selectedSets track by $index" ondrop="pC.drop(event)" ondragover="pC.dragover(event)">{{set.equivalents[0]}}</div> -->
+			<div id="slot1" class="emptyslot" ondragover="dragover(event)" ondrop="drop(event)"></div>
+			<button>putIn</button>
+			<button>Union</button>
+			<button>tester</button>
+		</div>
+	</div>
+</body>
+</html>
