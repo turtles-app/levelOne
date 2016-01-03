@@ -1,0 +1,8 @@
+#dropSpot1 {
+	/*border-style: solid;*/
+
+	display: inline-block;
+	border: 2px solid;
+	height: 100px;
+	width: 35%;
+}

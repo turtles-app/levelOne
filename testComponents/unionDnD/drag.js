@@ -1,5 +1,5 @@
 var app = require('./app.js');
-var setEngine 	= require('../engine/setEngine.js');
+var setEngine 	= require('../../setEngine.js');
 
 function drag(ev){
 	ev.dataTransfer.clearData()

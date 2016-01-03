@@ -2,12 +2,12 @@
 <html>
 <head>
 	<title>Front End</title>
-	<script type="text/javascript" src="../dependencies/angular.js"></script>
-	<script type="text/javascript" src="../engine/proofEngine.js"></script>
-	<script type="text/javascript" src="../engine/setEngine.js"></script>
-	<script type="text/javascript" src="../engine/operations.js"></script>
+	<script type="text/javascript" src="../../dependencies/angular.js"></script>
+	<script type="text/javascript" src="./proofEngine.js"></script>
+	<script type="text/javascript" src="./setEngine.js"></script>
+	<script type="text/javascript" src="./operations.js"></script>
 	<script type="text/javascript" src="./app.js"></script>
-	<link rel="stylesheet" type="text/css" href="../../style.css">
+	<link rel="stylesheet" type="text/css" href="./styles.css">
 </head>
 <body ng-app="homepage">
 	<h1>The Tester Front End</h1>
@@ -35,7 +35,7 @@
 			<div id="{{set.eqivalents[0]}}" ng-repeat="set in pC.newSets track by $index" class="newSets sets {{$index}}" draggable="true" ondragstart="drag(event)" ng-click="$parent.selected = $index">{{set.equivalents[0]}}</div>
 		</div>
 		<div id="bar">
-			<div id="dropspot1" class="emptyslot" ondragover="dragover(event)" ondrop="angular.element(getElementById('dropspot1')).scope().pC.drop(event)">
+			<div id="dropSpot1" class="emptyslot" ondragover="dragover(event)" ondrop="angular.element(getElementById('dropSpot1')).scope().pC.drop(event)">
 				<div ng-repeat="set in pC.selectedSets track by $index" class="sets selectedSets" id="{{set.equivalents[0]}}">{{set.equivalents[0]}}{{set.name}}</div>
 			</div>
 			<button id="putinbutton" onclick="angular.element(getElementById('putinbutton')).scope().pC.putIncall()">putIn</button>
