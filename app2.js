@@ -1,10 +1,39 @@
 var app 	= angular.module('homepage', []);
 
+var dragData = {
+	type: '',
+	name: '',
+	index: null
+};
+
 ///////////////////
 // Drag and Drop //
 ///////////////////
-var dragover = function(ev){
-	ev.preventDefault();
+var dragoverMap = function(ev){
+	if(dragData.type === 'operator') {
+		ev.preventDefault();
+	}
+};
+
+var dragoverUSet = function(ev){
+	if(dragData.type === 'set') {
+		ev.preventDefault();
+	}
+};
+
+var dragSet = function(ev) {
+	dragData.type = 'set';
+	dragData.index = ev.target.getAttribute('index');
+	dragData.name = '';
+	console.log("dragSet: " + dragData.index);
+};
+
+var dragUnion = function(ev) {
+	console.log("dragUnion");
+	dragData.type = 'operator';
+	dragData.name = 'union';
+	dragData.index = null;
+	console.log(dragData);
 };
 
 var drag = function(ev){
@@ -20,7 +49,7 @@ var assert = function(){
 	document.getElementById("miniMap").className = "miniMapLarge";
 	document.getElementById("character").className = "hidden";
 	document.getElementById("toolBox").innerHTML = "TOOLBOX \n now we will see two set slots here \n one of those slots will be taken up by the current set in which the element is present \n and the second slot will be filled in by the user by Dragging a set from the minimap into the next slot \n when the union is complete a new set will be added to the minimap"
-}
+};
 
 var navigate = function(){
 	document.getElementById("playgroundWrapper").className = "playgroundWrapperInFocus";
@@ -28,7 +57,7 @@ var navigate = function(){
 	document.getElementById("miniMap").className = "miniMapSmall";
 	document.getElementById("character").className = "";
 	document.getElementById("toolBox").innerHTML = "ToolBox This is where the operations will go when an operation is clicked we go into assert mode   - click on the button to the right"
-}
+};
 
 //Comparison function used to sort a group of sets/elements
 var sortGroup = function (a, b) {
@@ -53,6 +82,8 @@ app.controller("proofController", function($scope){
 	this.newSets	 = [];
 	this.selectedSets = [];
 	this.groupname = 'set';
+  	this.union1 = null; //first set in union operator
+  	this.union2 = null; //second set in union operator	
 
 	var A = new Set(this.groupname, 'A');
 	var B = new Set(this.groupname, 'B');
@@ -104,6 +135,8 @@ app.controller("proofController", function($scope){
 	};
 
 	this.drop = function(ev){
+		data.num++;
+		console.log(num);
 		if ($scope.pC.selectedSets.length < 2) {		
 			ev.preventDefault();
 			var data = ev.dataTransfer.getData('text');
@@ -178,6 +211,72 @@ app.controller("proofController", function($scope){
 		// 	document.getElementById(set.equivalents[0]).innerHTML += "<td>"+set.equivalents[1][0]+"</td>";
 		// 	document.getElementById(set.equivalents[0]).innerHTML += "<tr><td>"+set.equivalents[1][2]+"</td></tr>"
 		// }
+
 	}
+
+	////////////////////
+	//Toolbox Methods //
+	////////////////////
+
+
+	//Fires when a draggable element is dropped into #left
+	//If dropping a set, remove it from the list of sets,
+	//  and display it in #left
+	this.unionDrop1 = function (ev) {
+		var index = dragData.index;
+		var set = $scope.pC.oldSets.splice(index, 1)[0];
+		//Return the old Set 1, if there is one
+		if ($scope.pC.union1) {
+			if ($scope.pC.union1.isSet) {
+		  		$scope.pC.oldSets.push($scope.pC.union1);
+		  		$scope.pC.oldSets.sort(sortGroup);
+			}
+		}
+		$scope.pC.union1 = set;
+		$scope.$apply();
+		console.log("Union Set 1: ");
+		console.log($scope.pC.union1.equivalents[0]);
+	};	
+
+	//Fires when a draggable element is dropped into #right
+	//If dropping a set, remove it from the list of sets,
+	//  and display it in #right 
+	this.unionDrop2 = function (ev) {
+		var index = dragData.index;
+		var set = $scope.pC.oldSets.splice(index, 1)[0];
+		//Return the old Set 2, if there is one
+		if ($scope.pC.union2) {
+			if ($scope.pC.union2.isSet) {
+		  		$scope.pC.oldSets.push($scope.pC.union2);
+		  		$scope.pC.oldSets.sort(sortGroup);			
+			}
+		}
+		$scope.pC.union2 = set;
+		$scope.$apply();
+		console.log("Union Set 2:");
+		console.log($scope.pC.union2.equivalents[0]);
+	};
+
+	//Fires when union operator is dropped into #active
+	//If operator is full, sends alert, and returns sets to their
+	//  place in the list  
+	this.activeDrop = function (ev) {
+		console.log("activeDrop with following dragData");
+		console.log(dragData);
+	  	var dropType = dragData.type;
+	    if ($scope.pC.union1 && $scope.pC.union2) {
+	      	ev.preventDefault();
+	    	var str = $scope.pC.union1.equivalents[0]+ "U" + $scope.pC.union2.equivalents[0];
+	    	console.log(str);
+	        var res = union(str, $scope.pC.union1, $scope.pC.union2);
+	        $scope.pC.oldSets.push(res);
+	        $scope.pC.oldSets.push($scope.pC.union1, $scope.pC.union2);
+	        $scope.pC.oldSets.sort(sortGroup);
+	        $scope.pC.union1 = null;
+	        $scope.pC.union2 = null;
+	        $scope.$apply();
+	    }
+	      
+	  };  	
 }); //End of controller
 

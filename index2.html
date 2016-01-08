@@ -12,7 +12,7 @@
 
 <body ng-app="homepage">
 	<div id="wrapper" ng-controller="proofController as pC">
-		<button id="assertSwitch" onclick="assert()"> ASSERT MODE</button>
+		<button id="assertSwitch" > ASSERT MODE</button>
 		<button id="navigateSwitch" onclick="navigate()">NAVIGATE MODE</button>
 		<button ng-click="pC.miniMapAdd()">MiniMapDynamo</button>
 
@@ -28,17 +28,26 @@
 			</div>
 
 
-		<div id="toolBoxWrapper" class="toolBoxWrapperSmall">
+		<div id="toolBoxWrapper" class="toolBoxWrapperLarge">
 			<div id="toolBox" class="">
-				ToolBox
-				This is where the operations will go
-				when an operation is clicked we go into assert mode   - click on the button to the right
+			      <div id='union' draggable='true' ondragstart='dragUnion(event)'>
+			        <div id='unionText'>Union Operator</div>
+			        <div class='uSet' id='left' ondragover='dragoverUSet(event)' ondrop="angular.element(getElementById('wrapper')).scope().pC.unionDrop1(event)">Set 1
+			          <div ng-show='pC.union1' id="{{pC.union1.equivalents[0]}}">{{pC.union1.equivalents[0]}}</div>
+			        </div>
+			        <div id='uMid'>U</div>
+			        <div class='uSet' ondragover='dragoverUSet(event)' ondrop="angular.element(getElementById('wrapper')).scope().pC.unionDrop2(event)">Set 2
+			          <div ng-show='pC.union2' id="{{pC.union2.equivalents[0]}}">{{pC.union2.equivalents[0]}}</div>
+			        </div>
 			</div>		
 		</div>
 		
-		<div id="miniMap" class="miniMapSmall">
-				<div>Working on a dynamic that I am working on that takes as inputs the group name and generates the appropriate table structure for minimap</div>
-			<table>
+		<div id="miniMap" class="miniMapLarge" ondragover='dragoverMap(event)' ondrop="angular.element(getElementById('wrapper')).scope().pC.activeDrop(event)">
+		
+			      	<div id='sets'> Sets:
+			        <div ng-repeat='set in pC.oldSets track by $index' draggable='true'  class='set' index='{{$index}}' id='{{set.equivalents[0]}}' ondragstart="dragSet(event)">{{set.equivalents[0]}}</div>
+			      </div>
+				<table>
 				<tr>
 				  <td rowspan="4">AU(BUC)</td>
 				</tr>
@@ -68,7 +77,7 @@
 				</tr>
 			</table> -->
 		</div>
-	</div>
+	</div> <!-- End of Controller -->
 </body>
 
 </html>

@@ -135,7 +135,7 @@ tr td{
 	height:8%;
 	font-weight: normal;
 	font-size: .25em;
-	background-image: url('./images/arrows.png');
+	background-image: url('./images/greenTurtle.jpg');
 }
 
 #set1{
@@ -154,14 +154,14 @@ tr td{
 	display:inline-block;
 	background-size: 80px, 80px;
 	background-repeat: no-repeat;
-	background-image: url('./images/box.jpg');
+	background-image: url('./images/greenTurtle.jpg');
 	width:80px;
 	height:80px;
 	z-index: 3;
 }
 
 .currentSet{
-	background-image: url('./images/dungeon.jpg');
+	background-image: url('./images/redTurtle.jpg');
 	background-repeat: no-repeat;
 	background-size: 100%;
 }
@@ -175,7 +175,7 @@ tr td{
 	height:25%;
 	bottom:-400px;
 	float:left;
-	background-image: url('./images/character.jpg');
+	background-image: url('./images/man.jpg');
 	z-index: 4;
 	font-size:.15em;
 }
@@ -186,4 +186,71 @@ tr td{
 
 button{
 	float:right;
+}
+
+
+
+#active {
+  height: 200px;
+  width: 300px;
+  background-color: #C2E6F2;
+}
+
+#union {
+  width: 200px;
+  height:135px;
+  background-color: #AA3838;
+}
+.uSet {
+  position: relative;
+  display: inline-block;
+  height: 75px;
+  width: 75px;
+  left: 7px;
+  top: 12px;
+  background-color: #801515;
+}
+
+#uMid {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  top: 40px;
+  left: 7px;
+  text-align: center;
+}
+
+#unionText {
+  position: relative;
+  display: block;
+  text-align: center;
+}
+#sets {
+  width: 100%;
+  left: 500px;
+  bottom: 100px;
+  background-color: #328A2D;
+}
+
+.set{
+  position: relative;
+  display: block;
+  left: 40%;
+  width: 35px;
+  text-align: center;  
+}
+#A {
+  background-color: #8BCE88;
+}
+
+#B {
+  background-color: #58AC54;
+}
+
+#C {
+  background-color: #156811;
+}
+
+#D {
+  background-color: #0D450A;
 }
