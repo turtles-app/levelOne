@@ -45,10 +45,9 @@ var drag = function(ev){
 
 var assert = function(){
 	document.getElementById("playgroundWrapper").className = "playgroundWrapperOutOfFocus";
-	document.getElementById("toolBoxWrapper").className = "toolBoxWrapperLarge";
+	// document.getElementById("toolBoxWrapper").className = "toolBoxWrapperLarge";
 	document.getElementById("miniMap").className = "miniMapLarge";
-	document.getElementById("character").className = "hidden";
-	document.getElementById("toolBox").innerHTML = "TOOLBOX \n now we will see two set slots here \n one of those slots will be taken up by the current set in which the element is present \n and the second slot will be filled in by the user by Dragging a set from the minimap into the next slot \n when the union is complete a new set will be added to the minimap"
+	// document.getElementById("character").className = "hidden";
 };
 
 var navigate = function(){
@@ -56,7 +55,6 @@ var navigate = function(){
 	document.getElementById("toolBoxWrapper").className = "toolBoxWrapperSmall";
 	document.getElementById("miniMap").className = "miniMapSmall";
 	document.getElementById("character").className = "";
-	document.getElementById("toolBox").innerHTML = "ToolBox This is where the operations will go when an operation is clicked we go into assert mode   - click on the button to the right"
 };
 
 //Comparison function used to sort a group of sets/elements

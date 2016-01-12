@@ -12,7 +12,7 @@
 
 <body ng-app="homepage">
 	<div id="wrapper" ng-controller="proofController as pC">
-		<button id="assertSwitch" > ASSERT MODE</button>
+		<button id="assertSwitch" onclick="assert()"> ASSERT MODE</button>
 		<button id="navigateSwitch" onclick="navigate()">NAVIGATE MODE</button>
 		<button ng-click="pC.miniMapAdd()">MiniMapDynamo</button>
 
@@ -46,7 +46,7 @@
 		
 			      	<div id='sets'> Sets:
 			        <div ng-repeat='set in pC.oldSets track by $index' draggable='true'  class='set' index='{{$index}}' id='{{set.equivalents[0]}}' ondragstart="dragSet(event)">{{set.equivalents[0]}}</div>
-			      </div>
+		</div>
 				<table>
 				<tr>
 				  <td rowspan="4">AU(BUC)</td>
