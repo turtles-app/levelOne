@@ -19,7 +19,9 @@
 
 	<div id="facts">Facts</div>
 	<div id="sets">Sets
-		<div id="sets" ng-repeat="set in lvl1.sets track by $index">{{set.equivalents[0]}}</div>
+		<table>
+		<th> Sets that we have</th>
+		<tr><div id="set" ng-repeat="set in lvl1.sets track by $index">{{set.equivalents[0]}}</div> </tr>
 	</div>
 </div>
 </body>

@@ -1,81 +1,85 @@
 *{ 
 border: dotted 2px green;}
 body{
-	height:440px;
+	height:880px;
 }
-#wrapper{
+#wrapper {
+
 	height: 100%;
 	width:100%;
 	border: solid 1px red;
 }
 #wrapper div {
-	position: relative; 
+ 
 	border: dashed 1px blue;
-	margin: 4px;
+	margin: 1px;
 	display: inline-block;
 }
-#wrapper div:hover{
+/*#wrapper div:hover{
 	background-color:#5BC7EB;
 	opacity: .15;
 	z-index:1;
 }
-
+*/
 #tree{
+
 	position:absolute;
-	height:95%;
+	top : 	120px;
+	height:75%;
 	width:25%;
 }
-#tree:hover{
+/*#tree:hover{
 	position:absolute;
 	width:30%;
-}
+}*/
 
 #tableWrap{
+	display: inline-block;
 	position:absolute;
 	top:20%;
-	left:30%;
-	width:60%;
+	left:25%;
+	width:55%;
 	height:75%;
 }
-#tableWrap:hover{
+/*#tableWrap:hover{
 	height:78%;
 	width:68%;
 	background-color:#FC9C7C;
 	opacity:1;
-}
+}*/
 
 
 #table{
 	display:inline-block;
-	position:relative;
+	position:absolute;
 	height:85%;
 	width:95%;
 }
-#table:hover{
+/*#table:hover{
 	width:98%;
 	height:87%;
 	background-color: #E4F5DF;
 	opacity:.6;
-}
+}*/
 #operations{
 
-	display:relative;
+	position:absolute;
 	display:block;
 	bottom:-1px;
 	width:95%;
 	height:10%;
 }
-#operations:hover{
-	position:absolute;
+/*#operations:hover{
+
 	height:24%;
 	background-color: #F1C5FA;
 	opacity:.6;
 }
-
+*/
 #facts{
 	position:absolute;
-	bottom:-10px;
-	left:59%;
+	right:-1px;
+	bottom:-1px;
 	height:40%;
 	width:45%;
 	z-index:1;
@@ -83,9 +87,20 @@ body{
 
 #sets{
 	position:absolute;
+display: inline-block;
 	top:-8px;
 	left:59%;
 	height:40%;
 	width:45%;
+	z-index:1;	
+}
+
+#set{
+position:relative;
+display: block;
+	top:120px;
+	left:0%;
+	height:5%;
+	width:5%;
 	z-index:1;	
 }
