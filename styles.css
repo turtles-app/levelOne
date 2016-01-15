@@ -1,257 +1,88 @@
-/*body *{
-	border-style: dotted;
-	border-width: 1px;
-}*/
-
+*{ 
+border: dotted 2px green;}
 body{
-	height:100%;
+	height: 880px;
 	width:100%;
+	border: solid 1px red;
 }
-#miniMap table{
-	width:100%;
-	height:100%;
-	border-style: solid;
-}
-
-tr td{
-	border-style: solid;
-}
-
-#playgroundWrapper{
-	display:block;
-	border-style: solid;
-	border-width: 2px;
-	min-height: 600px;
-	width: 97%;
-	z-index:-2;	
-}
-
-#toolBoxWrapper{
+* body div {
+	position: relative; 
+	border: dashed 1px blue;
+	margin: 4px;
 	display: inline-block;
 }
-
-#toolBox{
-	position:relative;
-	width:100%;
-	height: 100%;
-	border-style: solid;
-	border-width: 2px;
-	bottom:-1px;
-	background-color: #dddddd;
+* body div:hover{
+	background-color:#5BC7EB;
+	opacity: .15;
+	z-index:1;
 }
 
-#miniMap{
-	float:right;
-	border-style: solid;
-	border-width: 2px;
-	background-color: #dddddd;
-	/*right:-90px;*/
-	/*z-index:1;*/
-}
-
-.playgroundInFocus{
-	position:relative;
-	display: block;
-	background-color: #dddddd;	
-
-}
-
-.playgroundOutOfFocus{
-	/*opacity: 20%;*/
-	/*visibility: hidden;*/
-	background-color: #fafafa;
-}
-
-.toolBoxWrapperSmall{
-
-	position: fixed;
-	display:inline-block;
-	width: 50%;
-	height:	3%;
-	bottom:-1px;
-}
-
-.toolBoxWrapperSmall:hover{
-	height:	15%;
-}
-
-.toolBoxWrapperLarge{
-	position: fixed;
-	display:inline-block;
-	height:	50%;
-	bottom:100px;
-	width: 15%;
-}
-
-.miniMapSmall{
-	position:fixed;
-	height: 35%;
-	width: 40%;
-	bottom:-1px;
-	right:-1px;
-	max-width: 350px;
-}
-
-.miniMapSmall:hover{
-	width:40.25%;
-	height: 35.5%;
-	max-width:360px;
-}
-
-.hidden{
-	visibility: hidden;
-}
-
-.miniMapLarge{
-	position:fixed;
-	height: 75%;
-	width: 66%;
-	bottom:15px;
-	right:10px;
-	max-width: 500px;
-}
-
-.currentSet{
-	display: fixed;
-	border-style: solid;
-	border-color: red;
-	border-width: 3px;
-	border-radius: 5px;
-	width:60%;
-	height: 600px;
-	font-weight: bolder;
-	font-size: 5em;
-	color:red;
-}
-
-.nextRoom{
-	float:right;
-	display: block;
-	border-style: solid;
-	border-color: red;
-	border-width: 3px;
-	border-radius: 5px;
-	width:15%;
-	height:8%;
-	font-weight: normal;
-	font-size: .25em;
-	background-image: url('./images/greenTurtle.jpg');
-}
-
-#set1{
-	display:relative;
-	margin-top:10px;
-	margin-right:-5px;
-}
-
-#set2{
-	display:relative;
-	margin-top:55%;
-	margin-right:-15%
-}
-
-.mapSets{
-	display:inline-block;
-	background-size: 80px, 80px;
-	background-repeat: no-repeat;
-	background-image: url('./images/greenTurtle.jpg');
-	width:80px;
-	height:80px;
-	z-index: 3;
-}
-
-.currentSet{
-	background-image: url('./images/redTurtle.jpg');
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-#character{
-	position: relative;
-	display:inline-block;
-	background-size: 90px, 90px;
-	background-repeat: no-repeat;
+#tree{
+	position:absolute;
+	height:95%;
 	width:25%;
-	height:25%;
-	bottom:-400px;
-	float:left;
-	background-image: url('./images/man.jpg');
-	z-index: 4;
-	font-size:.15em;
+}
+#tree:hover{
+	position:absolute;
+	width:30%;
 }
 
-.hidden{
-	visibility: hidden;
+#tableWrap{
+	position:absolute;
+	top:20%;
+	left:30%;
+	width:60%;
+	height:75%;
+}
+#tableWrap:hover{
+	height:78%;
+	width:68%;
+	background-color:#FC9C7C;
+	opacity:1;
 }
 
-button{
-	float:right;
+
+#table{
+	display:inline-block;
+	position:relative;
+	height:85%;
+	width:95%;
+}
+#table:hover{
+	width:98%;
+	height:87%;
+	background-color: #E4F5DF;
+	opacity:.6;
+}
+#operations{
+
+	display:relative;
+	display:block;
+	bottom:-1px;
+	width:95%;
+	height:10%;
+}
+#operations:hover{
+	position:absolute;
+	height:24%;
+	background-color: #F1C5FA;
+	opacity:.6;
 }
 
-
-
-#active {
-  height: 200px;
-  width: 300px;
-  background-color: #C2E6F2;
+#facts{
+	position:absolute;
+	bottom:-10px;
+	left:59%;
+	height:40%;
+	width:45%;
+	z-index:1;
 }
 
-#union {
-  width: 200px;
-  height:135px;
-  background-color: #AA3838;
+#sets{
+	position:absolute;
+	top:-8px;
+	left:59%;
+	height:40%;
+	width:45%;
+	z-index:1;	
 }
-.uSet {
-  position: relative;
-  display: inline-block;
-  height: 75px;
-  width: 75px;
-  left: 7px;
-  top: 12px;
-  background-color: #801515;
-}
-
-#uMid {
-  position: relative;
-  display: inline-block;
-  width: 25px;
-  top: 40px;
-  left: 7px;
-  text-align: center;
-}
-
-#unionText {
-  position: relative;
-  display: block;
-  text-align: center;
-}
-#sets {
-  width: 100%;
-  left: 500px;
-  bottom: 100px;
-  background-color: #328A2D;
-}
-
-.set{
-  position: relative;
-  display: block;
-  left: 40%;
-  width: 35px;
-  text-align: center;  
-}
-#A {
-  background-color: #8BCE88;
-}
-
-#B {
-  background-color: #58AC54;
-}
-
-#C {
-  background-color: #156811;
-}
-
-#D {
-  background-color: #0D450A;
-}
-
