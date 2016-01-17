@@ -17,12 +17,12 @@
 		<div id="operations">Operations
 			<div id='union' draggable='true' ondragstart='dragUnion(event)'>
 			        <div id='unionText'>Union Operator</div>
-			        <div class='uSet' id='left' ondragover='dragoverUSet(event)' ondrop="angular.element(getElementById('wrapper')).scope().pC.unionDrop1(event)">Set 1
-			          <div ng-show='pC.union1' id="{{pC.union1.equivalents[0]}}">{{pC.union1.equivalents[0]}}</div>
+			        <div class='uSet' id='left' ondragover='dragoverUSet(event)' ondrop="angular.element(getElementById('wrapper')).scope().lvl1.unionDrop1(event)">Set 1
+			          <div ng-show='lvl1.union1' id="{{lvl1.union1.equivalents[0]}}">{{lvl1.union1.equivalents[0]}}</div>
 			        </div>
 			        <div id='uMid'>U</div>
-			        <div class='uSet' ondragover='dragoverUSet(event)' ondrop="angular.element(getElementById('wrapper')).scope().pC.unionDrop2(event)">Set 2
-			        <div ng-show='pC.union2' id="{{pC.union2.equivalents[0]}}">{{pC.union2.equivalents[0]}}</div>
+			        <div class='uSet' ondragover='dragoverUSet(event)' ondrop="angular.element(getElementById('wrapper')).scope().lvl1.unionDrop2(event)">Set 2
+			        <div ng-show='lvl1.union2' id="{{lvl1.union2.equivalents[0]}}">{{lvl1.union2.equivalents[0]}}</div>
 			    </div>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 	<div id="sets">Sets
 		<table>
 		<th> Sets that we have</th>
-		<tr><div id="set" ng-repeat="set in lvl1.sets track by $index">{{set.equivalents[0]}}</div> </tr>
+		<tr><div id="set" draggable='true' index='{{set.equivalents[0]}}' ondragstart="dragSet(event)" ng-repeat="set in lvl1.sets track by $index">{{set.equivalents[0]}}</div> </tr>
 	</div>
 </div>
 </body>
