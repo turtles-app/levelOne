@@ -14,7 +14,18 @@
 	<div id="tree">Tree</div>
 	<div id="tableWrap">
 		<div id="table">Table</div>
-		<div id="operations">Operations</div>
+		<div id="operations">Operations
+			<div id='union' draggable='true' ondragstart='dragUnion(event)'>
+			        <div id='unionText'>Union Operator</div>
+			        <div class='uSet' id='left' ondragover='dragoverUSet(event)' ondrop="angular.element(getElementById('wrapper')).scope().pC.unionDrop1(event)">Set 1
+			          <div ng-show='pC.union1' id="{{pC.union1.equivalents[0]}}">{{pC.union1.equivalents[0]}}</div>
+			        </div>
+			        <div id='uMid'>U</div>
+			        <div class='uSet' ondragover='dragoverUSet(event)' ondrop="angular.element(getElementById('wrapper')).scope().pC.unionDrop2(event)">Set 2
+			        <div ng-show='pC.union2' id="{{pC.union2.equivalents[0]}}">{{pC.union2.equivalents[0]}}</div>
+			    </div>
+			</div>
+		</div>
 	</div>
 
 	<div id="facts">Facts</div>
