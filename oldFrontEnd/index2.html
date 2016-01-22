@@ -3,6 +3,7 @@
 <head>
 	<title>LevelOne</title>
 	<link rel="stylesheet" type="text/css" href="./styles2.css">
+
 	<script type="text/javascript" src="../dependencies/angular.js"></script>
 	<script type="text/javascript" src="../engine/proofEngine.js"></script>
 	<script type="text/javascript" src="../engine/setEngine.js"></script>
@@ -11,7 +12,9 @@
 </head>
 
 <body ng-app="homepage">
+
 	<div id="wrapper" ng-controller="proofController as pC">
+	
 		<button id="assertSwitch" onclick="assert()"> ASSERT MODE</button>
 		<button id="navigateSwitch" onclick="navigate()">NAVIGATE MODE</button>
 		<button ng-click="pC.miniMapAdd()">MiniMapDynamo</button>

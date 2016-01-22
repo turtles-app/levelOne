@@ -54,6 +54,7 @@ body{
 	position:absolute;
 	height:85%;
 	width:95%;
+	z-index: 2;
 }
 /*#table:hover{
 	width:98%;
@@ -69,13 +70,21 @@ body{
 	width:95%;
 	height:10%;
 }
-/*#operations:hover{
+/*#operations:hover {
 
 	height:24%;
 	background-color: #F1C5FA;
 	opacity:.6;
 }
 */
+.operationsClicked{
+	height:24%;
+	background-color: #F1C5FA;
+	opacity:.6;
+}
+
+
+
 #facts{
 	position:absolute;
 	right:-1px;
@@ -104,3 +113,12 @@ display: block;
 	width:5%;
 	z-index:2;	
 }
+.leftClicked{
+	height:100px;
+	width:100px;
+}
+.rightClicked{
+	height:100px;
+	width:100px;
+}
+

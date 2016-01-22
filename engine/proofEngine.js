@@ -59,8 +59,3 @@ var contains = function(eName, syntax, facts) {
 };
 
 
-
-// module.exports =  {
-// 	inAtomic: inAtomic,
-// 	contains: contains
-// }

@@ -1,11 +1,9 @@
-// var proofEngine = require('./proofEngine.js');
+
 
 var Set = function (groupName, name, firstEquivalence) {
 	// All sets exist within named array within the universe object 
 	// (which is instantiated on the front end)
 	this.groupName = groupName;
-	this.groupIndex = null;
-	this.isSet = true;
 
 	//List of syntax (array) representations of the set
 	this.equivalents = [name]; 
@@ -18,15 +16,14 @@ var Set = function (groupName, name, firstEquivalence) {
 	}
 	this.eqActiveIndex = 0;
 
+	this.isSet = true;
 
 };
 
-Set.prototype.contains = contains;
 
 //Puts an element in a Set's elements attribute
 Set.prototype.putIn = function(element) {
-	var set = this;
-	element.routes.push(new setRoute(set));
+	element.routes.push(new setRoute(this));
 	this.elements.push(element);
 }
 
@@ -39,6 +36,12 @@ var setRoute = function (set) {
 	this.elementIndex 	= set.elements.length; //Index of particular element for which this eSet exists within set/eSet
 }
 
+// var cpShell = function (shell) {
+// 	this.equivalents = shell.equivalents;
+// 	this.eqActiveIndex = shell.eqActiveIndex;
+// 	this.elementIndex = shell.elementIndex;
+// };
+
 
 
 //  Element objects are placed in the elements (array) attribute
@@ -49,18 +52,12 @@ var setRoute = function (set) {
 //	in which the Element resides.
 var Element = function (name, set) {
 	this.name = name;
-	this.groupIndex = null;
-	this.isSet = false;
 	var firstRoute = new setRoute(set);
 	this.routes = [];
 	this.routes.push(firstRoute);
 	set.elements.push(this);
+
+	this.isSet=false;
 }
 
 
-
-// module.exports = {
-// 	Set: 	  Set,
-// 	Element:  Element,
-// 	setRoute: setRoute
-// };
