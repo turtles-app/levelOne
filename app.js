@@ -13,6 +13,7 @@ var dragoverTable = function(ev){
 };
 
 
+
 var dragoverUSet = function(ev){
 	if(dragData.type === 'set') {
 		ev.preventDefault();
@@ -48,6 +49,10 @@ var dragIntersection = function(ev) {
 	console.log(dragData);
 }
 
+//Comparison function used to sort a group of sets/elements
+var sortGroup = function (a, b) {
+	return a.groupIndex - b.groupIndex;
+};
  
 app.controller('lvl1Controller', function($scope){
 
@@ -64,7 +69,11 @@ app.controller('lvl1Controller', function($scope){
 	B= new Set('set', 'B');
 	C= new Set('set', 'C');
 	x = new Element('x', A);
-	console.log("test: " + A.equivalents[0]);
+	
+	A.groupIndex = 0;
+	B.groupIndex = 1;
+	C.groupIndex = 2;
+	x.groupIndex = 0;
 
 	this.sets.push(A);
 	this.sets.push(B);
@@ -180,39 +189,71 @@ this.intersectionR = new Set('intersectionGap', 'Slot_B');
 	};
 	
 	this.drop = function(ev){
-		var index = dragData.index;
-		console.log(dragData);
-		
+		var index = dragData.index;		
 		if(dragData.name === 'intersection'){
 			console.log("intersection");
-			var intersectionRes = intersection($scope.lvl1.intersection1.equivalents[0]+"n"+$scope.lvl1.intersection2.equivalents[0],$scope.lvl1.intersection1, $scope.lvl1.union2);
-			console.log("IntRes: ");
-			console.log(intersectionRes);
-			$scope.lvl1.sets.push($scope.lvl1.intersection1);
-			$scope.lvl1.sets.push($scope.lvl1.intersection2);
-			$scope.lvl1.sets.push(intersectionRes);
-			$scope.lvl1.intersection1 = $scope.lvl1.intersectionL;
-			$scope.lvl1.intersection2 = $scope.lvl1.intersectionR;
-			$scope.$apply();
+
+			//Perform the operation iff both set slots are filled
+			if (!($scope.lvl1.intersection1.groupName === "intersectionGap" || $scope.lvl1.intersection2.groupName === "intersectionGap")){
+				var intersectionRes = intersection($scope.lvl1.intersection1.equivalents[0]+"n"+$scope.lvl1.intersection2.equivalents[0],$scope.lvl1.intersection1, $scope.lvl1.union2);
+
+				console.log("IntRes: ");
+				console.log(intersectionRes);
+
+				$scope.lvl1.sets.push($scope.lvl1.intersection1);
+				$scope.lvl1.sets.push($scope.lvl1.intersection2);
+				intersectionRes.groupIndex = $scope.lvl1.sets.length;
+				$scope.lvl1.sets.push(intersectionRes);
+				$scope.lvl1.intersection1 = $scope.lvl1.intersectionL;
+				$scope.lvl1.intersection2 = $scope.lvl1.intersectionR;
+			//If one or more slots were empty, reset contents of sets and slots
+			} else {
+				if ($scope.lvl1.intersection1.groupName != "intersectionGap") {
+					$scope.lvl1.sets.push($scope.lvl1.intersection1);
+					$scope.lvl1.intersection1 = $scope.lvl1.intersectionL;
+
+				}
+				if ($scope.lvl1.intersection2.groupName != "intersectionGap") {
+					$scope.lvl1.sets.push($scope.lvl1.intersection2);
+					$scope.lvl1.intersection2 = $scope.lvl1.intersectionR;
+				}
+			}
 		}
 
 		else if(dragData.name === 'union'){
 			console.log("union");
-			var unionRes = union($scope.lvl1.union1.equivalents[0]+"U"+$scope.lvl1.union2.equivalents[0], $scope.lvl1.union1, $scope.lvl1.union2);
-			console.log("unionRes: " );
-			console.log(unionRes);
-			$scope.lvl1.sets.push($scope.lvl1.union1);
-			$scope.lvl1.sets.push($scope.lvl1.union2);
-			$scope.lvl1.sets.push(unionRes);
-			$scope.lvl1.union1 = $scope.lvl1.unionL;
-			$scope.lvl1.union2 = $scope.lvl1.unionR;
-			$scope.$apply();
-		}		
+			//Perform the operation iff both set slots are filled
+			if (!($scope.lvl1.union1.groupName === "unionGap" || $scope.lvl1.union2.groupName === "unionGap")) {
+				console.log("full slots");
+				var unionRes = union($scope.lvl1.union1.equivalents[0]+"U"+$scope.lvl1.union2.equivalents[0], $scope.lvl1.union1, $scope.lvl1.union2);
+				console.log("unionRes: " );
+				console.log(unionRes);
+				$scope.lvl1.sets.push($scope.lvl1.union1);
+				$scope.lvl1.sets.push($scope.lvl1.union2);
+				unionRes.groupIndex = $scope.lvl1.sets.length;
+				$scope.lvl1.sets.push(unionRes);
+				$scope.lvl1.union1 = $scope.lvl1.unionL;
+				$scope.lvl1.union2 = $scope.lvl1.unionR;
 
-		// console.log(unionRes);
+			//If one or more slots were empty, reset contents of sets and slots
+			} else {
+				if ($scope.lvl1.union1.groupName != "unionGap") {
+					$scope.lvl1.sets.push($scope.lvl1.union1);
+					$scope.lvl1.union1 = $scope.lvl1.unionL
+				}
+				if ($scope.lvl1.union2.groupName != "unionGap") {
+					$scope.lvl1.sets.push($scope.lvl1.union2);
+					$scope.lvl1.union2 = $scope.lvl1.unionR;
+				}
+			}
+
+		}		
+			$scope.lvl1.sets.sort(sortGroup);	
+			$scope.$apply();
+
 
 			
-		};
+	};
 	
 
 
@@ -249,7 +290,7 @@ var clickedClass = function(element,clr){
 		element.classList.remove(unclickedClassName);
 	}
 
-	console.log("element.classList: " +element.classList);
+	console.log("element.classList: " + element.classList);
 	
 	// console.log("inside clickedClass");
 	// console.log(element.class);

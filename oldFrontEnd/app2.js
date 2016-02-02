@@ -21,6 +21,10 @@ var dragoverUSet = function(ev){
 	}
 };
 
+var dragoverUniverse = function(ev) {
+	ev.preventDefault();
+}
+
 var dragSet = function(ev) {
 	dragData.type = 'set';
 	dragData.index = ev.target.getAttribute('index');
