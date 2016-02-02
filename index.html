@@ -3,6 +3,7 @@
 <head>
 	<title>level one</title>
 	<link rel="stylesheet" type="text/css" href="./styles.css">
+	<link rel="stylesheet" type="text/css" href="./intro.css">
 	<script type="text/javascript" src="./dependencies/angular.js"></script>
 	<script type="text/javascript" src="./engine/proofEngine.js"></script>
 	<script type="text/javascript" src="./engine/setEngine.js"></script>
@@ -10,10 +11,30 @@
 	<script type="text/javascript" src="app.js"></script>
 </head>
 <body ng-app="homepage">
-<div id="wrapper" ng-controller="lvl1Controller as lvl1">
+<div class="intro">
+	<div class="thing introElements">
+		<p>Thing</p>	
+	</div>
+	<p>Things go in Boxes,</p>
+	<div class="box introElements">
+		<p>Box</p>
+	</div>
+	<p>Boxes can have many Things</p>
+</div>
+<div id="wrapper" ng-controller="lvl1Controller as lvl1" class="game">
 	<div id="tree">Tree</div>
 	<div id="tableWrap">
 		<div id="table">Table</div>
+		<div id="pockets">
+			<div id="setPocket">
+				<div class="boxPocket">box
+				<input>NAME</input>
+				</div>
+				<div class="elementPocket">element</div>
+			</div>
+			<div id="intersectionPocket"></div>
+			<div id="factPocket"></div>
+		</div>
 		<div id="operations" class="" onclick="clickedClass(this, 'operations')">Operations
 			<div id='union' draggable='true' ondragstart='dragUnion(event)'>
 			        <div id='unionText'>Union Operator</div>
@@ -39,10 +60,11 @@
 	</div>
 
 	<!-- <div id="facts">Facts</div> -->
-	<div id="sets" ondragover="dragoverTable(event)" ondrop="angular.element(getElementById('wrapper')).scope().lvl1.drop(event)">Sets
+	<div id="sets" ondragover="dragoverTable(event)" ondrop="angular.element(getElementById('wrapper')).scope().lvl1.drop(event)">
 		<table>
 		<th> Sets that we have</th>
 		<tr><div id="set" draggable='true' index='{{$index}}' ondragstart="dragSet(event)" ng-repeat="set in lvl1.sets track by $index">{{set.equivalents[0]}}</div> </tr>
+	<div id="elements">Elements</div>
 	</div>
 </div>
 </body>
