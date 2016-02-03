@@ -27,8 +27,10 @@
 		<div id="table">Table</div>
 		<div id="pockets">
 			<div id="setPocket">
-				<div class="boxPocket">box
-				<input>NAME</input>
+				<div class="boxPocket" draggable='true' ondragstart='dragSetForm()'>box
+					<form id='setForm'>
+	            		<input type='text' ng-model='lvl1.setName'></input>
+	        		</form>
 				</div>
 				<div class="elementPocket">element</div>
 			</div>

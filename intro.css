@@ -118,6 +118,7 @@
 	-webkit-animation-name:game;
 	-webkit-animation-duration:11s;
 }
+
 #setPocket{
 	position:absolute;
 	height:25em;
@@ -139,6 +140,7 @@
 .boxPocket{
 	position: relative;
 	background-color: blue;
+	z-index: 5;
 
 }
 .boxPocket input{

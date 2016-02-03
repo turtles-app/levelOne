@@ -7,9 +7,10 @@ var dragData = {
 
 var dragoverTable = function(ev){
 
-	if(dragData.type === 'operator') {
+	if(dragData.type === 'operator' || dragData.name === 'setForm') {
 		ev.preventDefault();
 	}
+
 };
 
 
@@ -47,7 +48,15 @@ var dragIntersection = function(ev) {
 	dragData.name = 'intersection';
 	dragData.index= null;
 	console.log(dragData);
-}
+};
+
+var dragSetForm = function(ev) {
+	console.log("dragSetForm");
+	dragData.type = 'form';
+	dragData.name = 'setForm';
+	dragData.index = null;
+	console.log(dragData);
+};
 
 //Comparison function used to sort a group of sets/elements
 var sortGroup = function (a, b) {
@@ -63,6 +72,7 @@ app.controller('lvl1Controller', function($scope){
 	this.table=[];
 	this.facts=[];
 	this.tree=[];
+	this.setName='';
 
 
 	A= new Set('set','A');
@@ -247,6 +257,9 @@ this.intersectionR = new Set('intersectionGap', 'Slot_B');
 				}
 			}
 
+		} else if (dragData.name === 'setForm') {
+			console.log('setForm');
+			$scope.lvl1.sets.push(new Set("set", $scope.lvl1.setName));
 		}		
 			$scope.lvl1.sets.sort(sortGroup);	
 			$scope.$apply();
