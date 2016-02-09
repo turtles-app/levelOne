@@ -61,9 +61,9 @@ body{
 }
 
 #setForm {
-	display: block;
+	display: inline-block;
 	position: relative;
-	z-index: 6;
+	z-index: 1;
 	width: 60%;
 	right: 5%;
 }
@@ -122,11 +122,15 @@ body{
 #set{
 position:relative;
 display: block;
+
 	top:120px;
 	left:0%;
-	height:5%;
+	height:9%;
 	width:5%;
 	z-index:2;	
+	background-color: blue;
+	padding-left: .5%;
+	padding-top: .25%;
 }
 #elements{
 	position:relative;
@@ -153,4 +157,84 @@ display: block;
 .element {
 	position: relative;
 	display: inline-block;
+	background-color: red;
+	width:5%;
+	height:55%;
+	padding-left: 2%;
+	padding-top: 1%;
+	border-radius: 50%;
 }
+.droppedElemWrap{
+	position:relative;
+	width:98%;
+	height:40%;
+	display:block;
+}
+.droppedElement{
+	position: relative;
+	display: inline-block;
+	background-color: red;
+	border-radius: 50%;
+	height:35%;
+	width:15%;
+	padding-top:20%;
+	padding-left:15%;
+
+}
+#setPocket{
+	position:absolute;
+	height:25em;
+	width:45em;
+	top:88px;
+	left:80px;
+}
+
+.boxPocket{
+	display:inline-block;
+	position: relative;
+	width:58%;
+	height: 80%;
+	top:80px;
+	background-color: blue;
+	z-index: 5;
+
+}
+
+#setForm input{
+	display:block;
+	position:relative;
+	margin-left: 40px;
+	width:100px;
+}
+
+#intersectionPocket{
+	position:relative;
+	display:inline-block;
+	top:90px;
+	height:30em;
+	width:50em;
+	background-color: #FFDEF0;
+}
+#intersectionPocket div{
+	display:inline-block;
+	position:relative;
+	/*border-style: solid;*/
+}
+.leftUnclicked{
+	border: 2px solid blue;
+	height:200px;
+	width:200px; 
+}
+
+.rightUnclicked{
+	border: 2px solid blue;
+	height:200px;
+	width:200px; 
+}
+
+#nMid{
+	top:100px;
+	display:inline-block;
+	font-size: 5em;
+}
+

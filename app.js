@@ -5,6 +5,16 @@ var dragData = {
 	index: null
 };
 
+var intersectionMode = function(){
+	document.getElementById("intersectionPocket").style.visibility = "visible";
+	document.getElementById("setPocket").style.visibility = "hidden";
+}
+
+var setMode = function(){
+	document.getElementById("setPocket").style.visibility = "visible"
+
+	document.getElementById("intersectionPocket").style.visibility = "hidden"
+}
 var dragoverTable = function(ev){
 	if(dragData.type === 'operator' || dragData.name === 'setForm') {
 		ev.preventDefault();
@@ -15,6 +25,7 @@ var dragoverTable = function(ev){
 
 
 var dragoverUSet = function(ev){
+	console.log("dragging over something");
 	if(dragData.type === 'set') {
 		ev.preventDefault();
 	}
@@ -64,6 +75,7 @@ var dragSetForm = function(ev) {
 };
 
 var dragElement = function(ev){
+
 	var index = ev.target.getAttribute('index');
 	console.log("DdragElement: " + index);
 	dragData.type = 'element';
@@ -96,6 +108,8 @@ app.controller('lvl1Controller', function($scope){
 	x = new Element('x', A);
 	y = new Element('y', B);
 	z = new Element('z', C);
+	p = new Element('p', C);
+	q = new Element('q', B);
 	
 	A.groupIndex = 0;
 	B.groupIndex = 1;
@@ -105,7 +119,7 @@ app.controller('lvl1Controller', function($scope){
 	z.groupIndex = 2;
 
 	this.sets.push(A, B, C);
-	this.elements.push(x, y, z);
+	this.elements.push(x, y, z, p, q);
 
     ////////////////////     //Toolbox Methods //     ////////////////////    
 this.unionL = new Set('unionGap','Slot_1');     
