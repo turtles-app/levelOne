@@ -27,7 +27,8 @@
 		<div id="table">Table</div>
 		<div id="pockets">
 			<div id="setPocket">
-				<div class="boxPocket" draggable='true' ondragstart='dragSetForm()'>box
+				<div class="boxPocket" draggable='true' ondragstart='dragSetForm(event)' ondragover='dragoverSetForm(event)' ondrop="angular.element(getElementById('wrapper')).scope().lvl1.elementDrop(event)">box
+	        		<div class='element' ng-repeat="el in lvl1.elementsGoingIn">{{el.name}}</div>
 					<form id='setForm'>
 	            		<input type='text' ng-model='lvl1.setName'></input>
 	        		</form>
@@ -66,7 +67,9 @@
 		<table>
 		<th> Sets that we have</th>
 		<tr><div id="set" draggable='true' index='{{$index}}' ondragstart="dragSet(event)" ng-repeat="set in lvl1.sets track by $index">{{set.equivalents[0]}}</div> </tr>
-	<div id="elements">Elements</div>
+	<div id="elements">Elements
+		<div ng-repeat='element in lvl1.elements' index="{{$index}}" draggable='true' ondragstart="dragElement(event)">{{element.name}}</div>
+	</div>
 	</div>
 </div>
 </body>

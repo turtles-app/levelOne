@@ -76,7 +76,7 @@
 	margin-top: auto;
 	visibility: hidden;
 	-webkit-animation-name:introShow;
-	-webkit-animation-duration:8s;
+	-webkit-animation-duration:0s;
 }
 
 .introElements p {
@@ -93,7 +93,7 @@
 	background-color: red;
 	visibility: hidden;
 	-webkit-animation-name:introShow;
-	-webkit-animation-duration:7s;
+	-webkit-animation-duration:0s;
 }
 
 .box{
@@ -103,7 +103,7 @@
 	background-color: blue;
 	visibility: hidden;
 	-webkit-animation-name:introShow;
-	-webkit-animation-duration:7s;
+	-webkit-animation-duration:0s;
 
 }
 
@@ -111,12 +111,12 @@
 	height:100%;
 	width:100%;
 	-webkit-animation-name:intro;
-	-webkit-animation-duration:9s;
+	-webkit-animation-duration:0s;
 }
 
 .game{
 	-webkit-animation-name:game;
-	-webkit-animation-duration:11s;
+	-webkit-animation-duration:1s;
 }
 
 #setPocket{

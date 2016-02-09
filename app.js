@@ -6,7 +6,6 @@ var dragData = {
 };
 
 var dragoverTable = function(ev){
-
 	if(dragData.type === 'operator' || dragData.name === 'setForm') {
 		ev.preventDefault();
 	}
@@ -23,6 +22,12 @@ var dragoverUSet = function(ev){
 
 var dragoverISet = function(ev){
 	if(dragData.type ==='set') {
+		ev.preventDefault();
+	}
+};
+
+var dragoverSetForm = function(ev) {
+	if(dragData.type === 'element') {
 		ev.preventDefault();
 	}
 };
@@ -58,6 +63,15 @@ var dragSetForm = function(ev) {
 	console.log(dragData);
 };
 
+var dragElement = function(ev){
+	var index = ev.target.getAttribute('index');
+	console.log("DdragElement: " + index);
+	dragData.type = 'element';
+	dragData.name = null;
+	dragData.index = index;
+	console.log(dragData);
+};
+
 //Comparison function used to sort a group of sets/elements
 var sortGroup = function (a, b) {
 	return a.groupIndex - b.groupIndex;
@@ -73,22 +87,25 @@ app.controller('lvl1Controller', function($scope){
 	this.facts=[];
 	this.tree=[];
 	this.setName='';
+	this.elementsGoingIn = [];
 
 
 	A= new Set('set','A');
 	B= new Set('set', 'B');
 	C= new Set('set', 'C');
 	x = new Element('x', A);
+	y = new Element('y', B);
+	z = new Element('z', C);
 	
 	A.groupIndex = 0;
 	B.groupIndex = 1;
 	C.groupIndex = 2;
 	x.groupIndex = 0;
+	y.groupIndex = 1;
+	z.groupIndex = 2;
 
-	this.sets.push(A);
-	this.sets.push(B);
-	this.sets.push(C);
-	this.elements.push(x);
+	this.sets.push(A, B, C);
+	this.elements.push(x, y, z);
 
     ////////////////////     //Toolbox Methods //     ////////////////////    
 this.unionL = new Set('unionGap','Slot_1');     
@@ -205,7 +222,7 @@ this.intersectionR = new Set('intersectionGap', 'Slot_B');
 
 			//Perform the operation iff both set slots are filled
 			if (!($scope.lvl1.intersection1.groupName === "intersectionGap" || $scope.lvl1.intersection2.groupName === "intersectionGap")){
-				var intersectionRes = intersection($scope.lvl1.intersection1.equivalents[0]+"n"+$scope.lvl1.intersection2.equivalents[0],$scope.lvl1.intersection1, $scope.lvl1.union2);
+				var intersectionRes = intersection($scope.lvl1.intersection1.equivalents[0]+"n"+$scope.lvl1.intersection2.equivalents[0],$scope.lvl1.intersection1, $scope.lvl1.intersection2);
 
 				console.log("IntRes: ");
 				console.log(intersectionRes);
@@ -259,13 +276,27 @@ this.intersectionR = new Set('intersectionGap', 'Slot_B');
 
 		} else if (dragData.name === 'setForm') {
 			console.log('setForm');
-			$scope.lvl1.sets.push(new Set("set", $scope.lvl1.setName));
+			var newSet = new Set("set", $scope.lvl1.setName);
+			newSet.groupIndex = $scope.lvl1.sets.length;
+			newSet.elements = newSet.elements.concat($scope.lvl1.elementsGoingIn);
+			$scope.lvl1.elements = $scope.lvl1.elements.concat($scope.lvl1.elementsGoingIn.splice(0, $scope.lvl1.elementsGoingIn.length));
+			$scope.lvl1.sets.push(newSet);
+			console.log(newSet);
 		}		
 			$scope.lvl1.sets.sort(sortGroup);	
+			$scope.lvl1.setName = '';
+			$scope.lvl1.elements.sort(sortGroup);
 			$scope.$apply();
 
 
 			
+	};
+
+	this.elementDrop = function(ev) {
+		var index = dragData.index;
+		console.log("Dropping element: " + index);
+		$scope.lvl1.elementsGoingIn.push($scope.lvl1.elements.splice(index, 1)[0]);
+		$scope.$apply();
 	};
 	
 

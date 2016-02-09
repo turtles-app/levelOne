@@ -52,6 +52,7 @@ var setRoute = function (set) {
 //	in which the Element resides.
 var Element = function (name, set) {
 	this.name = name;
+	this.groupIndex;
 	var firstRoute = new setRoute(set);
 	this.routes = [];
 	this.routes.push(firstRoute);

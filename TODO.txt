@@ -5,9 +5,11 @@
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 
-1) On click functions to alter css for the divs
-2) Set instantiation (angular)
-3) drag and drop
+1) Clean up styles
+	-Fit each element in elementsGoingIn within the boxPocket
+	-Integrate the operations into the table
+2) Improve set sorting upon creating a new set to account for sets stored in operation-pockets at the time of new set creation
+3) Leverage angular toastr to display the contents of each set
 
 
 

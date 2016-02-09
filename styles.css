@@ -149,3 +149,8 @@ display: block;
 .hidden{
 	visibility: hidden;
 }
+
+.element {
+	position: relative;
+	display: inline-block;
+}
