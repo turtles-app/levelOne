@@ -300,3 +300,9 @@ display: block;
 		right:180px;
 	float:right;
 }
+
+
+.fact {
+	position: relative;
+	display: block;
+}

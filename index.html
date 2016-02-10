@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="./styles.css">
 	<link rel="stylesheet" type="text/css" href="./intro.css">
 	<script type="text/javascript" src="./dependencies/angular.js"></script>
+	<script type="text/javascript" src="./dependencies/lodash.js"></script>
 	<script type="text/javascript" src="./engine/proofEngine.js"></script>
 	<script type="text/javascript" src="./engine/setEngine.js"></script>
 	<script type="text/javascript" src="./engine/operations.js"></script>
@@ -22,8 +23,8 @@
 	<p>Boxes can have many Things</p>
 </div>
 <div id="wrapper" ng-controller="lvl1Controller as lvl1" class="game">
-	<div id="tree">Tree
-		<div ng-repeat='fact in lvl1.facts'>fact</div>
+	<div id="tree" ondragover='dragoverTree(event)' ondrop="angular.element(getElementById('wrapper')).scope().lvl1.newFact(event)">Tree
+		<div ng-repeat='fact in lvl1.facts' class='fact' draggable='true' index='{{$index}}' ondragstart='dragFact(event)'>{{fact.str}}</div>
 	</div>
 	<div id="tableWrap">
 			
@@ -56,18 +57,22 @@
 					</div>
 				</div>
 			</div>
-			<div id="factPocket">
+			<div id="factPocket" draggable='true' ondragstart='dragFactPocket(event)' ondragover='dragoverSetFact(event)' ondrop="angular.element(getElementById('wrapper')).scope().lvl1.dropSetFact(event)">
+				<div ng-show='lvl1.factSet'>{{lvl1.factSet.equivalents[0]}}</div>
 				<div id="triangle" class="fact ">
 				
 					<div class="arrow-right"></div>
 				</div>
-				<div id="dropZone"> drop Zone</div>
-				<div id="square" class="setinFact ">
+				<div id="dropZone" ondragover='dragoverElementFact(event)' ondrop="angular.element(getElementById('wrapper')).scope().lvl1.dropElementFactOut(event)"> drop Zone
+					<div id='factE' ng-hide='lvl1.factIsIn'>{{lvl1.factElement.name}}</div>
+				</div>
+				<div id="square" class="setinFact " ondragover='dragoverElementFact(event)' ondrop="angular.element(getElementById('wrapper')).scope().lvl1.dropElementFactIn(event)">
 				
-					<div id="element" class = "element elementinFact ">
-						
+					<div id="element" class = "element elementinFact">
+						<div id='factE' ng-show='lvl1.factIsIn'>{{lvl1.factElement.name}}</div>
 					</div>
 				 </div>
+				 <div ng-repeat='fact in lvl1.justifications'>{{fact.str}}</div>
 			</div>
 		</div>
 	<!-- 	<div id="operations" class="" onclick="clickedClass(this, 'operations')">Operations

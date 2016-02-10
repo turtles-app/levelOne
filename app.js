@@ -51,6 +51,24 @@ var dragoverSetForm = function(ev) {
 	}
 };
 
+var dragoverElementFact = function(ev) {
+	if(dragData.type === 'element') {
+		ev.preventDefault();
+	}
+};
+
+var dragoverSetFact = function(ev) {
+	if(dragData.type === 'set' || dragData.type === 'fact') {
+		ev.preventDefault();
+	}
+};
+
+var dragoverTree = function(ev) {
+	if(dragData.type === 'factPocket') {
+		ev.preventDefault();
+	}
+};
+
 var dragSet = function(ev) {
 	dragData.type = 'set';
 	dragData.index = ev.target.getAttribute('index');
@@ -82,14 +100,26 @@ var dragSetForm = function(ev) {
 	console.log(dragData);
 };
 
-var dragElement = function(ev){
-
+var dragElement = function(ev) {
 	var index = ev.target.getAttribute('index');
 	console.log("DdragElement: " + index);
 	dragData.type = 'element';
 	dragData.name = null;
 	dragData.index = index;
 	console.log(dragData);
+};
+
+var dragFactPocket = function(ev) {
+	dragData.type = 'factPocket';
+	dragData.name = null;
+	dragData.index = null;
+
+};
+
+var dragFact = function(ev) {
+	dragData.type = 'fact';
+	dragData.index = ev.target.getAttribute('index');
+	dragData.name = null;
 };
 
 //Comparison function used to sort a group of sets/elements
@@ -109,6 +139,10 @@ app.controller('lvl1Controller', function($scope){
 	this.setName='';
 	this.elementsGoingIn = [];
 	this.selectedSet;
+	this.factSet;
+	this.factElement;
+	this.factIsIn;
+	this.justifications = [];
 
 
 	A= new Set('set','A');
@@ -126,22 +160,34 @@ app.controller('lvl1Controller', function($scope){
 	x.groupIndex = 0;
 	y.groupIndex = 1;
 	z.groupIndex = 2;
+	p.groupIndex = 3;
+	q.groupIndex = 4;
 
+	C.elements.push(x);
 	this.sets.push(A, B, C);
 	this.elements.push(x, y, z, p, q);
+
+	var xInA = new Fact('x', true, 'A'),
+	yInB = new Fact('y', true, 'B'),
+	zInC = new Fact('z', true, 'C'),
+	pInC = new Fact('p', true, 'C')
+	qInC = new Fact('q', true, 'C'),
+	xinC = new Fact('x', true, 'C');
+
+	this.facts.push(xInA, yInB, zInC, pInC, qInC, xinC);
 
 	this.selectedSet = A;
 
     ////////////////////     //Toolbox Methods //     ////////////////////    
-this.unionL = new Set('unionGap','Slot_1');     
-this.unionR = new Set('unionGap', 'Slot_2');
-this.intersectionL = new Set('intersectionGap', 'Slot_A');
-this.intersectionR = new Set('intersectionGap', 'Slot_B');
+	this.unionL = new Set('unionGap','Slot_1');     
+	this.unionR = new Set('unionGap', 'Slot_2');
+	this.intersectionL = new Set('intersectionGap', 'Slot_A');
+	this.intersectionR = new Set('intersectionGap', 'Slot_B');
 
-		this.union1 = this.unionL;
-		this.union2 = this.unionR;
-		this.intersection1 = this.intersectionL;
-		this.intersection2 = this.intersectionR;
+	this.union1 = this.unionL;
+	this.union2 = this.unionR;
+	this.intersection1 = this.intersectionL;
+	this.intersection2 = this.intersectionR;
 	//Fires when a draggable element is dropped into #left
 	//If dropping a set, remove it from the list of sets,
 	//  and display it in #left
@@ -323,9 +369,64 @@ this.intersectionR = new Set('intersectionGap', 'Slot_B');
 		$scope.lvl1.elementsGoingIn.push($scope.lvl1.elements.splice(index, 1)[0]);
 		$scope.$apply();
 	};
+
+	this.dropElementFactIn = function(ev) {
+		var index = dragData.index;
+		if ($scope.lvl1.factElement) {
+			$scope.lvl1.elements.push($scope.lvl1.factElement);
+		}		
+		$scope.lvl1.factElement = $scope.lvl1.elements.splice(index, 1)[0];
+		$scope.lvl1.factIsIn = true;
+		$scope.lvl1.elements.sort(sortGroup);
+		$scope.$apply();
+	};
+
+	this.dropElementFactOut = function(ev) {
+		var index = dragData.index;
+		if ($scope.lvl1.factElement) {
+			$scope.lvl1.elements.push($scope.lvl1.factElement);
+		}
+		$scope.lvl1.factElement = $scope.lvl1.elements.splice(index, 1)[0];
+		$scope.lvl1.factIsIn = false;
+		$scope.lvl1.elements.sort(sortGroup);
+		$scope.$apply();
+	};
 	
+	this.dropSetFact = function(ev) {
+		var index = dragData.index;
+		if (dragData.type === 'set') {
+			if ($scope.lvl1.factSet) {
+				$scope.lvl1.sets.push($scope.lvl1.factSet);
+			}
+			$scope.lvl1.factSet = $scope.lvl1.sets.splice(index, 1)[0];
+			$scope.lvl1.sets.sort(sortGroup);
+		} else if (dragData.type === 'fact') {
+			$scope.lvl1.justifications.push($scope.lvl1.facts.splice(index, 1)[0]);
+		}
+		$scope.$apply();
+	};
 
-
+	this.newFact = function(ev) {
+		console.log("newFact");
+		//Assumes all facts are of "isIn" form
+		// console.log($scope.lvl1.factSet.equivalents[$scope.lvl1.factSet.equivalents.length - 1]);
+		var sound = contains($scope.lvl1.factElement.name, $scope.lvl1.factSet.equivalents[$scope.lvl1.factSet.equivalents.length - 1], $scope.lvl1.justifications);
+		console.log(sound);
+		if (sound) {
+			var proven = new Fact($scope.lvl1.factElement.name, true, $scope.lvl1.factSet.equivalents[0]);
+			proven.justifications = proven.justifications.concat($scope.lvl1.justifications);
+			$scope.lvl1.facts = $scope.lvl1.facts.concat($scope.lvl1.justifications);
+			$scope.lvl1.justifications = [];
+			$scope.lvl1.facts.push(proven);
+			$scope.lvl1.sets.push($scope.lvl1.factSet);
+			$scope.lvl1.elements.push($scope.lvl1.factElement);
+			$scope.lvl1.factSet = null;
+			$scope.lvl1.factElement = null;
+			$scope.lvl1.sets.sort(sortGroup);
+			$scope.lvl1.elements.sort(sortGroup);
+		}
+		$scope.$apply();
+	};
 
 
 });

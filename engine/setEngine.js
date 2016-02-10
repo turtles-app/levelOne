@@ -53,6 +53,22 @@ var Element = function (name, set) {
 	set.elements.push(this);
 
 	this.isSet=false;
-}
+};
+
+//	Fact object represents a fact of the form
+//		"x is contained in A, because [fact1, fact2, ...fact_n]", OR
+//		"x is NOT contained in A, because [fact1, fact2, ...fact_n]"
+var Fact = function (elementName, isIn, setSyntax) {
+	this.subject = "containment"; //These objects are facts about containment, not inclusion, or equality
+	this.simple = typeof(setSyntax) === 'string'; //boolean -- true if setSyntax is a string, false if it's a syntax
+	this.elementName = elementName;
+	this.isIn = isIn; //true if x is in A, false if x is NOT in A
+	this.setSyntax = setSyntax; //Syntax of the referenced set
+	this.justifications = []; //array of facts submited by user to justify this fact
+	this.usedJustifications = []; //subset of justifications actually necessary for justification
+	var tmpStr = ' is in ';
+	if (!isIn) tmpStr = ' is not in ';
+	this.str = elementName + tmpStr + setSyntax.toString();
+};
 
 
