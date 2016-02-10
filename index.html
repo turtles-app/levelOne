@@ -22,7 +22,9 @@
 	<p>Boxes can have many Things</p>
 </div>
 <div id="wrapper" ng-controller="lvl1Controller as lvl1" class="game">
-	<div id="tree">Tree</div>
+	<div id="tree">Tree
+		<div ng-repeat='fact in lvl1.facts'>fact</div>
+	</div>
 	<div id="tableWrap">
 			
 		<div id="pockets">
@@ -86,6 +88,13 @@
 	<div id="elements">
 		<div class="element" ng-repeat='element in lvl1.elements' index="{{$index}}" draggable='true' ondragstart="dragElement(event)">{{element.name}}</div>
 	</div>
+	</div>
+	<div id="setDetails">Set Details for {{lvl1.selectedSet.equivalents[0]}}:
+		<p>Elements known in A</p>
+		<div id='detailElementWrapper'>
+			<div ng-repeat="el in lvl1.selectedSet.elements" class="element detailsElement">{{el.name}}</div>
+		</div>
+
 	</div>
 </div>
 </body>

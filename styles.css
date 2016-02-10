@@ -27,6 +27,7 @@ body{
 	top : 	120px;
 	height:75%;
 	width:25%;
+	border: 2px dashed blue;
 }
 /*#tree:hover{
 	position:absolute;
@@ -164,6 +165,11 @@ display: block;
 	padding-top: 1%;
 	border-radius: 50%;
 }
+
+.detailsElement {
+	width: 200%;
+	text-align: center;
+}
 .droppedElemWrap{
 	position:relative;
 	width:98%;
@@ -181,6 +187,7 @@ display: block;
 	padding-left:15%;
 
 }
+
 #setPocket{
 	position:absolute;
 	height:25em;
@@ -238,3 +245,11 @@ display: block;
 	font-size: 5em;
 }
 
+#setDetails {
+	position: relative;
+	display: inline-block;
+	top: 300px;
+	border: 2px dashed purple;
+	height:65%;
+	width:70%;	
+}

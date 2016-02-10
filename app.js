@@ -100,6 +100,7 @@ app.controller('lvl1Controller', function($scope){
 	this.tree=[];
 	this.setName='';
 	this.elementsGoingIn = [];
+	this.selectedSet;
 
 
 	A= new Set('set','A');
@@ -120,6 +121,8 @@ app.controller('lvl1Controller', function($scope){
 
 	this.sets.push(A, B, C);
 	this.elements.push(x, y, z, p, q);
+
+	this.selectedSet = A;
 
     ////////////////////     //Toolbox Methods //     ////////////////////    
 this.unionL = new Set('unionGap','Slot_1');     

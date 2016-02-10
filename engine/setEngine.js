@@ -36,12 +36,6 @@ var setRoute = function (set) {
 	this.elementIndex 	= set.elements.length; //Index of particular element for which this eSet exists within set/eSet
 }
 
-// var cpShell = function (shell) {
-// 	this.equivalents = shell.equivalents;
-// 	this.eqActiveIndex = shell.eqActiveIndex;
-// 	this.elementIndex = shell.elementIndex;
-// };
-
 
 
 //  Element objects are placed in the elements (array) attribute
