@@ -196,6 +196,7 @@ display: block;
 	left:80px;
 }
 
+
 .boxPocket{
 	display:inline-block;
 	position: relative;
@@ -252,4 +253,50 @@ display: block;
 	border: 2px dashed purple;
 	height:65%;
 	width:70%;	
+}
+
+#factPocket{
+	position: relative;
+
+	bottom:450px;
+	visibility: 	hidden;	
+	width: 0; 
+	height: 0; 
+	border-top: 380px solid #aeffde ;
+	border-bottom: 380px solid transparent;	
+	border-left: 380px solid transparent;
+	-webkit-transform: rotate(90deg);
+	transform:rotate(90deg);
+	-ms-transform:rotate(90deg);	
+}
+
+/*Triangles*/
+
+
+.setinFact{
+	/*border: 1px solid black;*/
+	position:relative;
+	background-color: blue;
+	width:8em;
+	height:8em;
+	z-index: 2;
+	bottom:370px;
+	right:180px;
+}
+
+.elementinFact{
+	width:80%;
+	height:80%;
+	left:10px;
+}
+
+#dropZone{
+	width:100px;
+	height:150px;
+	border: 4px solid black;
+	display:inline-block;
+	position: relative;
+		bottom:420px;
+		right:180px;
+	float:right;
 }

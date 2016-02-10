@@ -8,12 +8,20 @@ var dragData = {
 var intersectionMode = function(){
 	document.getElementById("intersectionPocket").style.visibility = "visible";
 	document.getElementById("setPocket").style.visibility = "hidden";
+	document.getElementById("factPocket").style.visibility = "hidden";
+
 }
 
 var setMode = function(){
 	document.getElementById("setPocket").style.visibility = "visible"
-
+	document.getElementById("factPocket").style.visibility = "hidden";
 	document.getElementById("intersectionPocket").style.visibility = "hidden"
+}
+
+var factMode = function(){
+	document.getElementById("setPocket").style.visibility = "hidden"
+	document.getElementById("intersectionPocket").style.visibility = "hidden"
+	document.getElementById("factPocket").style.visibility = "visible";
 }
 var dragoverTable = function(ev){
 	if(dragData.type === 'operator' || dragData.name === 'setForm') {

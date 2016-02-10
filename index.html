@@ -30,7 +30,8 @@
 		<div id="pockets">
 		<div id="pocketSelector">
 			<button onClick="intersectionMode()">intersection</button>
-			<button onClick="setMode()">set</button>
+			<button onClick="setMode()">custom set</button>
+			<button onClick="factMode()">facts</button>
 		</div>
 			<div id="setPocket" class="" >
 				<div class="boxPocket Pocket" draggable='true' ondragstart='dragSetForm(event)' ondragover='dragoverSetForm(event)' ondrop="angular.element(getElementById('wrapper')).scope().lvl1.elementDrop(event)">
@@ -55,7 +56,19 @@
 					</div>
 				</div>
 			</div>
-			<div id="factPocket"></div>
+			<div id="factPocket">
+				<div id="triangle" class="fact ">
+				
+					<div class="arrow-right"></div>
+				</div>
+				<div id="dropZone"> drop Zone</div>
+				<div id="square" class="setinFact ">
+				
+					<div id="element" class = "element elementinFact ">
+						
+					</div>
+				 </div>
+			</div>
 		</div>
 	<!-- 	<div id="operations" class="" onclick="clickedClass(this, 'operations')">Operations
 			<div id='union' draggable='true' ondragstart='dragUnion(event)'>
